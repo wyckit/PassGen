@@ -44,7 +44,13 @@ that structure is impossible or disallowed, the tool is never invoked. Read the 
 
 ## See it: the pipeline, made visible
 
-`passgen --trace` renders all five stages so you can watch language turn into verified intent:
+`passgen --trace` renders all five stages — language becoming verified intent, then the
+fail-closed case where an impossible request is rejected before any tool runs:
+
+![PassGen --trace: language is resolved to typed intent, validated, executed by a CSPRNG, and verified — and an impossible request is REJECTED before the tool runs](docs/demo.gif)
+
+<details>
+<summary>Prefer text? The same two runs, panel by panel.</summary>
 
 ```
 $ passgen --trace "give me a 20-character password with 3 numbers, 2 symbols, no confusing characters"
@@ -79,10 +85,12 @@ $ passgen --trace "make me a 4-character password with 10 uppercase letters"
   +-- [5] VERIFICATION   [ BYPASSED ] nothing was produced to verify
 ```
 
+</details>
+
 Language proposed something impossible. The symbolic layer refused it **before** any tool ran.
 The system is not trying to be agreeable — it is trying to be correct.
 
-> 🎬 Render this as a GIF with [`vhs docs/demo.tape`](docs/demo.tape).
+> 🎬 Regenerate this GIF anytime with [`vhs docs/demo.tape`](docs/demo.tape).
 
 ## Quick start
 
