@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Test engine (xUnit suite + TLM dataset integrity)
+        run: dotnet test PassGen.Engine.Tests/PassGen.Engine.Tests.csproj -c Release
+
+      - name: Build the assistant (PassGen.App)
+        run: dotnet build PassGen.App/PassGen.App.csproj -c Release
+
+      - name: Build the TLM CLI (PassGen.Tlm.Cli)
+        run: dotnet build PassGen.Tlm.Cli/PassGen.Tlm.Cli.csproj -c Release

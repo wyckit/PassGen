@@ -1,5 +1,9 @@
 # PassGen
 
+[![CI](https://github.com/wyckit/PassGen/actions/workflows/ci.yml/badge.svg)](https://github.com/wyckit/PassGen/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![.NET 10](https://img.shields.io/badge/.NET-10.0-512BD4.svg)](https://dotnet.microsoft.com/)
+
 > **Don't execute language. Execute verified intent.**
 
 **PassGen looks like a password generator. It is really a small architecture demo.**
@@ -21,6 +25,8 @@ the request.**
 ---
 
 ## The shift
+
+![Symbolic Intent Architecture: language proposes, the validator gates, the tool executes, the verifier audits](docs/sia-diagram.svg)
 
 ```
   Common agent pattern  ─  language has too much authority
@@ -75,6 +81,8 @@ $ passgen --trace "make me a 4-character password with 10 uppercase letters"
 
 Language proposed something impossible. The symbolic layer refused it **before** any tool ran.
 The system is not trying to be agreeable — it is trying to be correct.
+
+> 🎬 Render this as a GIF with [`vhs docs/demo.tape`](docs/demo.tape).
 
 ## Quick start
 
