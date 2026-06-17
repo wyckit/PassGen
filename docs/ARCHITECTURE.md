@@ -33,6 +33,39 @@ The payoff: the answer is **explainable** (you can trace which concepts/relation
 **reproducible** (the engine is deterministic), and **safe** (a model can't hallucinate a
 password — the engine generates and validates it).
 
+> **This pattern has a name: Symbolic Intent Architecture (SIA)** — *language proposes intent;
+> symbolic systems validate it; deterministic tools execute it; verifiers audit it.* The
+> "Knowledge / Capability / Language" split above is the implementation; the conceptual pattern,
+> the analogy, the threat model, and how it generalizes beyond passwords are in
+> **[SYMBOLIC-INTENT-ARCHITECTURE.md](SYMBOLIC-INTENT-ARCHITECTURE.md)**. Watch it run with
+> `passgen --trace`.
+
+### Emergence vs. authority
+
+The Language layer is deliberately the only place "fuzzy" reasoning is allowed — and it has **no
+authority**. It may *propose* structure; it cannot *act*. Everything downstream (validation,
+generation, verification) is deterministic and bounded:
+
+> **Emergence belongs in proposal and planning. Authority belongs in validation and execution.**
+
+This is what lets the proposal layer be anything — today a rule parser, tomorrow an LLM —
+without weakening the guarantees: whatever it proposes is still typed, still validated before
+the tool runs, and still verified after.
+
+### The learning loop (coverage grows as data, not code)
+
+Teaching PassGen a new phrasing does not touch C# and does not retrain anything. It grows the
+symbolic layer:
+
+```
+  observed phrase ──► proposed symbolic concept/cue ──► tests ──► review ──► versioned TLM update
+```
+
+Add a cue `Trigger`/`Signal` or a class alias to the TLM source, recompile (`build-dataset.ps1`),
+and the resolver understands it immediately. Coverage is exactly what has been authored and
+tested — inspectable and diffable. The *capacity to understand* grows; the *authority to act*
+never does.
+
 ---
 
 ## 2. Components
