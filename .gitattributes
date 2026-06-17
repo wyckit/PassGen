@@ -1,0 +1,9 @@
+# Normalize text files to LF in the repo; check out native on each platform.
+* text=auto
+
+# Windows scripts must keep CRLF.
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+
+# Compiled TLM artifacts are binary.
+*.tlmz binary

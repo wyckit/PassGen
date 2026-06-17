@@ -1,0 +1,590 @@
+{
+  "Manifest": {
+    "Metadata": {
+      "TlmId": "rs-entropy",
+      "IsMutable": false,
+      "Role": 4,
+      "Priority": 90,
+      "Version": "1.0.0",
+      "Checksum": "",
+      "HotSwapPolicy": 1,
+      "StabilityScore": 0.85
+    },
+    "Imports": [
+      "rs-constraint-spec"
+    ],
+    "Derives": [],
+    "CreatedUtc": "2026-06-17T00:00:00Z",
+    "SchemaVersion": "1.0"
+  },
+  "Concepts": [
+    {
+      "Id": "entropy-root",
+      "Label": "password entropy",
+      "Category": "Metric",
+      "Description": "Strength model: entropy = log2(number of distinct valid strings) = the attacker search space, in bits.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "metric-bits",
+      "Label": "bits",
+      "Category": "Metric",
+      "Description": "log2 of the count of distinct valid strings the spec admits.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "metric-charset",
+      "Label": "charset size",
+      "Category": "Metric",
+      "Description": "Number of distinct characters usable under the spec (N).",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "metric-valid-count",
+      "Label": "valid string count",
+      "Category": "Metric",
+      "Description": "Exact count via the constrained-multinomial EGF; reduces to N^L when unconstrained.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "metric-crack-time",
+      "Label": "crack time",
+      "Category": "Metric",
+      "Description": "bits -\u003E wall-clock at a guess rate (default 1e12 guesses/sec).",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "str-very-weak",
+      "Label": "very weak",
+      "Category": "StrengthLabel",
+      "Description": "Strength band: \u003C28 bits.",
+      "Aliases": [],
+      "Properties": {
+        "MinBits": "0"
+      }
+    },
+    {
+      "Id": "str-weak",
+      "Label": "weak",
+      "Category": "StrengthLabel",
+      "Description": "Strength band: 28-35 bits.",
+      "Aliases": [],
+      "Properties": {
+        "MinBits": "28"
+      }
+    },
+    {
+      "Id": "str-fair",
+      "Label": "fair",
+      "Category": "StrengthLabel",
+      "Description": "Strength band: 36-59 bits.",
+      "Aliases": [],
+      "Properties": {
+        "MinBits": "36"
+      }
+    },
+    {
+      "Id": "str-strong",
+      "Label": "strong",
+      "Category": "StrengthLabel",
+      "Description": "Strength band: 60-79 bits.",
+      "Aliases": [],
+      "Properties": {
+        "MinBits": "60"
+      }
+    },
+    {
+      "Id": "str-very-strong",
+      "Label": "very strong",
+      "Category": "StrengthLabel",
+      "Description": "Strength band: \u003E=80 bits.",
+      "Aliases": [],
+      "Properties": {
+        "MinBits": "80"
+      }
+    },
+    {
+      "Id": "ref-pin4",
+      "Label": "4-digit PIN",
+      "Category": "ReferencePoint",
+      "Description": "Four decimal digits: 10^4 = 13.3 bits.",
+      "Aliases": [],
+      "Properties": {
+        "Bits": "13.3"
+      }
+    },
+    {
+      "Id": "ref-alnum8",
+      "Label": "8-char alphanumeric",
+      "Category": "ReferencePoint",
+      "Description": "8 chars over 62 symbols.",
+      "Aliases": [],
+      "Properties": {
+        "Bits": "47.6"
+      }
+    },
+    {
+      "Id": "ref-allclass8",
+      "Label": "8-char all-classes",
+      "Category": "ReferencePoint",
+      "Description": "8 chars over the 75-char alphabet (~6.23 bits/char).",
+      "Aliases": [],
+      "Properties": {
+        "Bits": "49.8"
+      }
+    },
+    {
+      "Id": "ref-alnum16",
+      "Label": "16-char alphanumeric",
+      "Category": "ReferencePoint",
+      "Description": "16 chars over 62 symbols.",
+      "Aliases": [],
+      "Properties": {
+        "Bits": "95.3"
+      }
+    },
+    {
+      "Id": "ref-allclass16",
+      "Label": "16-char all-classes",
+      "Category": "ReferencePoint",
+      "Description": "16 chars over the 75-char alphabet \u2014 the headline strong default.",
+      "Aliases": [],
+      "Properties": {
+        "Bits": "99.7"
+      }
+    },
+    {
+      "Id": "ref-threshold80",
+      "Label": "80-bit offline threshold",
+      "Category": "ReferencePoint",
+      "Description": "Rule of thumb: 80\u002B bits resists offline GPU attack.",
+      "Aliases": [],
+      "Properties": {
+        "Bits": "80"
+      }
+    },
+    {
+      "Id": "ins-length-dominates",
+      "Label": "length dominates charset",
+      "Category": "Insight",
+      "Description": "Doubling length (8-\u003E16) roughly doubles entropy (~50-\u003E100 bits); adding character variety adds far less.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "ins-symbol-marginal",
+      "Label": "symbols add little",
+      "Category": "Insight",
+      "Description": "Adding the symbol class to a 16-char alphanumeric password adds only ~4 bits (95.3-\u003E99.7).",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "ins-perclass-min-reduces",
+      "Label": "per-class minimums reduce entropy",
+      "Category": "Insight",
+      "Description": "Forcing structure (\u0027at least 2 of each\u0027) slightly shrinks the valid space (99.7-\u003E98.6 bits).",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "ins-no-ambiguous-costs",
+      "Label": "no-ambiguous costs ~2 bits",
+      "Category": "Insight",
+      "Description": "Dropping ambiguous chars shrinks the charset 75-\u003E69, costing ~2 bits.",
+      "Aliases": [],
+      "Properties": {}
+    }
+  ],
+  "Relations": [
+    {
+      "SourceId": "entropy-root",
+      "TargetId": "metric-bits",
+      "Type": "HasMetric",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "entropy-root",
+      "TargetId": "metric-charset",
+      "Type": "HasMetric",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "entropy-root",
+      "TargetId": "metric-valid-count",
+      "Type": "HasMetric",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "entropy-root",
+      "TargetId": "metric-crack-time",
+      "Type": "HasMetric",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "metric-bits",
+      "TargetId": "metric-charset",
+      "Type": "DependsOn",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "metric-bits",
+      "TargetId": "metric-valid-count",
+      "Type": "DependsOn",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "metric-crack-time",
+      "TargetId": "metric-bits",
+      "Type": "DerivedFrom",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "metric-valid-count",
+      "TargetId": "metric-charset",
+      "Type": "DependsOn",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "metric-bits",
+      "TargetId": "str-very-weak",
+      "Type": "MapsTo",
+      "Description": "bits in band \u003C28 bits",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "metric-bits",
+      "TargetId": "str-weak",
+      "Type": "MapsTo",
+      "Description": "bits in band 28-35 bits",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "str-very-weak",
+      "TargetId": "str-weak",
+      "Type": "SiblingOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "metric-bits",
+      "TargetId": "str-fair",
+      "Type": "MapsTo",
+      "Description": "bits in band 36-59 bits",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "str-weak",
+      "TargetId": "str-fair",
+      "Type": "SiblingOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "metric-bits",
+      "TargetId": "str-strong",
+      "Type": "MapsTo",
+      "Description": "bits in band 60-79 bits",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "str-fair",
+      "TargetId": "str-strong",
+      "Type": "SiblingOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "metric-bits",
+      "TargetId": "str-very-strong",
+      "Type": "MapsTo",
+      "Description": "bits in band \u003E=80 bits",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "str-strong",
+      "TargetId": "str-very-strong",
+      "Type": "SiblingOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ref-pin4",
+      "TargetId": "metric-bits",
+      "Type": "MeasuredIn",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ref-alnum8",
+      "TargetId": "metric-bits",
+      "Type": "MeasuredIn",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ref-allclass8",
+      "TargetId": "metric-bits",
+      "Type": "MeasuredIn",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ref-alnum16",
+      "TargetId": "metric-bits",
+      "Type": "MeasuredIn",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ref-allclass16",
+      "TargetId": "metric-bits",
+      "Type": "MeasuredIn",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ref-threshold80",
+      "TargetId": "metric-bits",
+      "Type": "MeasuredIn",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ins-length-dominates",
+      "TargetId": "metric-bits",
+      "Type": "Explains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ins-symbol-marginal",
+      "TargetId": "metric-bits",
+      "Type": "Explains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ins-perclass-min-reduces",
+      "TargetId": "metric-bits",
+      "Type": "Explains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ins-no-ambiguous-costs",
+      "TargetId": "metric-bits",
+      "Type": "Explains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ins-length-dominates",
+      "TargetId": "ref-allclass16",
+      "Type": "EvidencedBy",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ins-symbol-marginal",
+      "TargetId": "ref-alnum16",
+      "Type": "EvidencedBy",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ins-no-ambiguous-costs",
+      "TargetId": "str-strong",
+      "Type": "Affects",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    }
+  ],
+  "Dimensions": [
+    {
+      "Id": "dim-bits",
+      "Label": "entropy bits",
+      "MinValue": 0,
+      "MaxValue": 128
+    },
+    {
+      "Id": "dim-strength",
+      "Label": "normalized strength",
+      "MinValue": 0,
+      "MaxValue": 1
+    }
+  ],
+  "Policies": [],
+  "Cues": [],
+  "FitSignals": [
+    {
+      "Id": "fit-strong-threshold",
+      "Threshold": 0.8
+    }
+  ],
+  "Generators": [],
+  "ParameterCount": 46
+}

@@ -1,0 +1,562 @@
+{
+  "Manifest": {
+    "Metadata": {
+      "TlmId": "rs-operations",
+      "IsMutable": false,
+      "Role": 2,
+      "Priority": 110,
+      "Version": "1.0.0",
+      "Checksum": "",
+      "HotSwapPolicy": 1,
+      "StabilityScore": 0.8
+    },
+    "Imports": [
+      "rs-constraint-spec"
+    ],
+    "Derives": [],
+    "CreatedUtc": "2026-06-17T00:00:00Z",
+    "SchemaVersion": "1.0"
+  },
+  "Concepts": [
+    {
+      "Id": "op-root",
+      "Label": "operations",
+      "Category": "OperationSet",
+      "Description": "The vocabulary of operations a user can apply to narrow the default (all-classes, secure) spec.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "eff-restrict-classes",
+      "Label": "restrict allowed classes",
+      "Category": "Effect",
+      "Description": "Limit which character classes may appear.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "eff-set-class-min",
+      "Label": "set class minimum",
+      "Category": "Effect",
+      "Description": "Guarantee a minimum count for a class.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "eff-set-class-max",
+      "Label": "set class maximum",
+      "Category": "Effect",
+      "Description": "Cap the count for a class.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "eff-set-length",
+      "Label": "set length",
+      "Category": "Effect",
+      "Description": "Set exact length or a [min,max] range.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "eff-exclude",
+      "Label": "exclude characters",
+      "Category": "Effect",
+      "Description": "Add characters to exclude_chars.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "eff-include",
+      "Label": "include characters",
+      "Category": "Effect",
+      "Description": "Add characters to include_chars.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "eff-disable-ambiguous",
+      "Label": "disable ambiguous",
+      "Category": "Effect",
+      "Description": "Remove the ambiguous set from every class.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "op-only",
+      "Label": "only",
+      "Category": "Operation",
+      "Description": "Restrict the output to the named class(es) only.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "op-exclude",
+      "Label": "exclude",
+      "Category": "Operation",
+      "Description": "Forbid specific characters.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "op-include",
+      "Label": "include",
+      "Category": "Operation",
+      "Description": "Require specific characters to appear.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "op-min",
+      "Label": "minimum",
+      "Category": "Operation",
+      "Description": "Require at least N characters of a class.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "op-max",
+      "Label": "maximum",
+      "Category": "Operation",
+      "Description": "Allow at most N characters of a class.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "op-length-exact",
+      "Label": "exact length",
+      "Category": "Operation",
+      "Description": "Fix the output to exactly N characters.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "op-length-range",
+      "Label": "length range",
+      "Category": "Operation",
+      "Description": "Bound length between min and max.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "op-no-ambiguous",
+      "Label": "no ambiguous",
+      "Category": "Operation",
+      "Description": "Drop visually confusable characters.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "op-letters-only",
+      "Label": "letters only",
+      "Category": "Operation",
+      "Description": "Restrict to uppercase\u002Blowercase.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "op-alphanumeric",
+      "Label": "alphanumeric",
+      "Category": "Operation",
+      "Description": "Restrict to letters\u002Bdigits (no symbols).",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "op-digits-only",
+      "Label": "digits only",
+      "Category": "Operation",
+      "Description": "Restrict to the numeric class.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "op-symbols-only",
+      "Label": "symbols only",
+      "Category": "Operation",
+      "Description": "Restrict to the symbol class.",
+      "Aliases": [],
+      "Properties": {}
+    }
+  ],
+  "Relations": [
+    {
+      "SourceId": "op-root",
+      "TargetId": "op-only",
+      "Type": "Contains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-only",
+      "TargetId": "eff-restrict-classes",
+      "Type": "Produces",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-root",
+      "TargetId": "op-exclude",
+      "Type": "Contains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-exclude",
+      "TargetId": "eff-exclude",
+      "Type": "Produces",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-root",
+      "TargetId": "op-include",
+      "Type": "Contains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-include",
+      "TargetId": "eff-include",
+      "Type": "Produces",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-root",
+      "TargetId": "op-min",
+      "Type": "Contains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-min",
+      "TargetId": "eff-set-class-min",
+      "Type": "Produces",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-root",
+      "TargetId": "op-max",
+      "Type": "Contains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-max",
+      "TargetId": "eff-set-class-max",
+      "Type": "Produces",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-root",
+      "TargetId": "op-length-exact",
+      "Type": "Contains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-length-exact",
+      "TargetId": "eff-set-length",
+      "Type": "Produces",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-root",
+      "TargetId": "op-length-range",
+      "Type": "Contains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-length-range",
+      "TargetId": "eff-set-length",
+      "Type": "Produces",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-root",
+      "TargetId": "op-no-ambiguous",
+      "Type": "Contains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-no-ambiguous",
+      "TargetId": "eff-disable-ambiguous",
+      "Type": "Produces",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-root",
+      "TargetId": "op-letters-only",
+      "Type": "Contains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-letters-only",
+      "TargetId": "eff-restrict-classes",
+      "Type": "Produces",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-root",
+      "TargetId": "op-alphanumeric",
+      "Type": "Contains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-alphanumeric",
+      "TargetId": "eff-restrict-classes",
+      "Type": "Produces",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-root",
+      "TargetId": "op-digits-only",
+      "Type": "Contains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-digits-only",
+      "TargetId": "eff-restrict-classes",
+      "Type": "Produces",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-root",
+      "TargetId": "op-symbols-only",
+      "Type": "Contains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-symbols-only",
+      "TargetId": "eff-restrict-classes",
+      "Type": "Produces",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-letters-only",
+      "TargetId": "op-only",
+      "Type": "IsA",
+      "Description": "a preset restriction",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-alphanumeric",
+      "TargetId": "op-only",
+      "Type": "IsA",
+      "Description": "a preset restriction",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-digits-only",
+      "TargetId": "op-only",
+      "Type": "IsA",
+      "Description": "a preset restriction",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-symbols-only",
+      "TargetId": "op-only",
+      "Type": "IsA",
+      "Description": "a preset restriction",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-length-exact",
+      "TargetId": "op-length-range",
+      "Type": "SiblingOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-min",
+      "TargetId": "op-max",
+      "Type": "SiblingOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "op-min",
+      "TargetId": "op-include",
+      "Type": "RelatesTo",
+      "Description": "minimum-of-class vs must-include-char",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    }
+  ],
+  "Dimensions": [],
+  "Policies": [],
+  "Cues": [],
+  "FitSignals": [],
+  "Generators": [],
+  "ParameterCount": 31
+}

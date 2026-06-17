@@ -1,0 +1,975 @@
+{
+  "Manifest": {
+    "Metadata": {
+      "TlmId": "rs-nl-vocabulary",
+      "IsMutable": false,
+      "Role": 2,
+      "Priority": 105,
+      "Version": "1.0.0",
+      "Checksum": "",
+      "HotSwapPolicy": 1,
+      "StabilityScore": 0.7
+    },
+    "Imports": [
+      "rs-operations"
+    ],
+    "Derives": [],
+    "CreatedUtc": "2026-06-17T00:00:00Z",
+    "SchemaVersion": "1.0"
+  },
+  "Concepts": [
+    {
+      "Id": "nl-root",
+      "Label": "natural-language vocabulary",
+      "Category": "Lexicon",
+      "Description": "Maps free-form English to constraint signals the deterministic resolver executes. Each Cue carries Trigger synonyms (the vocabulary) and a Signal (the action). The TLM IS the model: add a synonym here and the resolver understands it - no code change. Numbers/classes/chars are bound from context by the resolver, never invented.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "intent-min",
+      "Label": "class minimum",
+      "Category": "Intent",
+      "Description": "Require at least N of a class.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "intent-max",
+      "Label": "class maximum",
+      "Category": "Intent",
+      "Description": "Allow at most N of a class.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "intent-exact",
+      "Label": "exact count",
+      "Category": "Intent",
+      "Description": "Require exactly N of a class.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "intent-length",
+      "Label": "length",
+      "Category": "Intent",
+      "Description": "Set output length (exact, min, max, or range).",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "intent-restrict",
+      "Label": "restrict classes",
+      "Category": "Intent",
+      "Description": "Limit which classes may appear.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "intent-exclude",
+      "Label": "exclude chars",
+      "Category": "Intent",
+      "Description": "Forbid a class or specific characters.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "intent-include",
+      "Label": "include chars",
+      "Category": "Intent",
+      "Description": "Require a class or specific characters.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "intent-no-ambiguous",
+      "Label": "no ambiguous",
+      "Category": "Intent",
+      "Description": "Remove visually confusable characters.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "cue-qmin",
+      "Label": "at least",
+      "Category": "Phrase",
+      "Description": "Cue (signal q.min); triggers: at least / minimum / min / at minimum / no fewer than / no less than / or more.",
+      "Aliases": [
+        "at least",
+        "minimum",
+        "min",
+        "at minimum",
+        "no fewer than",
+        "no less than",
+        "or more"
+      ],
+      "Properties": {
+        "Triggers": "at least / minimum / min / at minimum / no fewer than / no less than / or more",
+        "Signal": "q.min"
+      }
+    },
+    {
+      "Id": "cue-qmax",
+      "Label": "at most",
+      "Category": "Phrase",
+      "Description": "Cue (signal q.max); triggers: at most / no more than / no greater than / up to / maximum / max / at maximum / or fewer / or less.",
+      "Aliases": [
+        "at most",
+        "no more than",
+        "no greater than",
+        "up to",
+        "maximum",
+        "max",
+        "at maximum",
+        "or fewer",
+        "or less"
+      ],
+      "Properties": {
+        "Triggers": "at most / no more than / no greater than / up to / maximum / max / at maximum / or fewer / or less",
+        "Signal": "q.max"
+      }
+    },
+    {
+      "Id": "cue-qexact",
+      "Label": "exactly",
+      "Category": "Phrase",
+      "Description": "Cue (signal q.exact); triggers: exactly / precisely.",
+      "Aliases": [
+        "exactly",
+        "precisely"
+      ],
+      "Properties": {
+        "Triggers": "exactly / precisely",
+        "Signal": "q.exact"
+      }
+    },
+    {
+      "Id": "cue-length",
+      "Label": "characters",
+      "Category": "Phrase",
+      "Description": "Cue (signal target.length); triggers: characters / character / chars / char / long / in length / length.",
+      "Aliases": [
+        "characters",
+        "character",
+        "chars",
+        "char",
+        "long",
+        "in length",
+        "length"
+      ],
+      "Properties": {
+        "Triggers": "characters / character / chars / char / long / in length / length",
+        "Signal": "target.length"
+      }
+    },
+    {
+      "Id": "cue-each",
+      "Label": "of each",
+      "Category": "Phrase",
+      "Description": "Cue (signal each.min); triggers: of each / of each type / of each kind / of each class.",
+      "Aliases": [
+        "of each",
+        "of each type",
+        "of each kind",
+        "of each class"
+      ],
+      "Properties": {
+        "Triggers": "of each / of each type / of each kind / of each class",
+        "Signal": "each.min"
+      }
+    },
+    {
+      "Id": "cue-only",
+      "Label": "only",
+      "Category": "Phrase",
+      "Description": "Cue (signal only); triggers: only / just / nothing but.",
+      "Aliases": [
+        "only",
+        "just",
+        "nothing but"
+      ],
+      "Properties": {
+        "Triggers": "only / just / nothing but",
+        "Signal": "only"
+      }
+    },
+    {
+      "Id": "cue-letters",
+      "Label": "letters",
+      "Category": "Phrase",
+      "Description": "Cue (signal only.uppercase\u002Blowercase); triggers: letters / alphabetic / alphabetical / mixed case / mixed-case / upper and lower / both cases.",
+      "Aliases": [
+        "letters",
+        "alphabetic",
+        "alphabetical",
+        "mixed case",
+        "mixed-case",
+        "upper and lower",
+        "both cases"
+      ],
+      "Properties": {
+        "Triggers": "letters / alphabetic / alphabetical / mixed case / mixed-case / upper and lower / both cases",
+        "Signal": "only.uppercase\u002Blowercase"
+      }
+    },
+    {
+      "Id": "cue-alnum",
+      "Label": "alphanumeric",
+      "Category": "Phrase",
+      "Description": "Cue (signal only.uppercase\u002Blowercase\u002Bnumeric); triggers: alphanumeric / alphanumerics / letters and numbers / letters and digits / numbers and letters / digits and letters.",
+      "Aliases": [
+        "alphanumeric",
+        "alphanumerics",
+        "letters and numbers",
+        "letters and digits",
+        "numbers and letters",
+        "digits and letters"
+      ],
+      "Properties": {
+        "Triggers": "alphanumeric / alphanumerics / letters and numbers / letters and digits / numbers and letters / digits and letters",
+        "Signal": "only.uppercase\u002Blowercase\u002Bnumeric"
+      }
+    },
+    {
+      "Id": "cue-digonly",
+      "Label": "digits only",
+      "Category": "Phrase",
+      "Description": "Cue (signal only.numeric); triggers: digits only / numbers only / numeric only / only digits / only numbers / just digits / just numbers.",
+      "Aliases": [
+        "digits only",
+        "numbers only",
+        "numeric only",
+        "only digits",
+        "only numbers",
+        "just digits",
+        "just numbers"
+      ],
+      "Properties": {
+        "Triggers": "digits only / numbers only / numeric only / only digits / only numbers / just digits / just numbers",
+        "Signal": "only.numeric"
+      }
+    },
+    {
+      "Id": "cue-symonly",
+      "Label": "symbols only",
+      "Category": "Phrase",
+      "Description": "Cue (signal only.symbol); triggers: symbols only / only symbols / special only.",
+      "Aliases": [
+        "symbols only",
+        "only symbols",
+        "special only"
+      ],
+      "Properties": {
+        "Triggers": "symbols only / only symbols / special only",
+        "Signal": "only.symbol"
+      }
+    },
+    {
+      "Id": "cue-loweronly",
+      "Label": "lowercase only",
+      "Category": "Phrase",
+      "Description": "Cue (signal only.lowercase); triggers: lowercase only / only lowercase / all lowercase.",
+      "Aliases": [
+        "lowercase only",
+        "only lowercase",
+        "all lowercase"
+      ],
+      "Properties": {
+        "Triggers": "lowercase only / only lowercase / all lowercase",
+        "Signal": "only.lowercase"
+      }
+    },
+    {
+      "Id": "cue-upperonly",
+      "Label": "uppercase only",
+      "Category": "Phrase",
+      "Description": "Cue (signal only.uppercase); triggers: uppercase only / only uppercase / all uppercase / all caps.",
+      "Aliases": [
+        "uppercase only",
+        "only uppercase",
+        "all uppercase",
+        "all caps"
+      ],
+      "Properties": {
+        "Triggers": "uppercase only / only uppercase / all uppercase / all caps",
+        "Signal": "only.uppercase"
+      }
+    },
+    {
+      "Id": "cue-pin",
+      "Label": "pin",
+      "Category": "Phrase",
+      "Description": "Cue (signal preset.pin); triggers: pin / pin code / pincode / passcode.",
+      "Aliases": [
+        "pin",
+        "pin code",
+        "pincode",
+        "passcode"
+      ],
+      "Properties": {
+        "Triggers": "pin / pin code / pincode / passcode",
+        "Signal": "preset.pin"
+      }
+    },
+    {
+      "Id": "cue-noambig",
+      "Label": "no ambiguous",
+      "Category": "Phrase",
+      "Description": "Cue (signal no_ambiguous); triggers: no ambiguous / unambiguous / readable / no look-alikes / no look alikes / no lookalikes / no confusing / no confusables / no confusable characters / avoid confusing / easy to read / legible / memorable.",
+      "Aliases": [
+        "no ambiguous",
+        "unambiguous",
+        "readable",
+        "no look-alikes",
+        "no look alikes",
+        "no lookalikes",
+        "no confusing",
+        "no confusables",
+        "no confusable characters",
+        "avoid confusing",
+        "easy to read",
+        "legible",
+        "memorable"
+      ],
+      "Properties": {
+        "Triggers": "no ambiguous / unambiguous / readable / no look-alikes / no look alikes / no lookalikes / no confusing / no confusables / no confusable characters / avoid confusing / easy to read / legible / memorable",
+        "Signal": "no_ambiguous"
+      }
+    },
+    {
+      "Id": "cue-exclude",
+      "Label": "exclude",
+      "Category": "Phrase",
+      "Description": "Cue (signal exclude); triggers: exclude / excluding / without / avoid / omit / drop / remove / skip / no.",
+      "Aliases": [
+        "exclude",
+        "excluding",
+        "without",
+        "avoid",
+        "omit",
+        "drop",
+        "remove",
+        "skip",
+        "no"
+      ],
+      "Properties": {
+        "Triggers": "exclude / excluding / without / avoid / omit / drop / remove / skip / no",
+        "Signal": "exclude"
+      }
+    },
+    {
+      "Id": "cue-include",
+      "Label": "include",
+      "Category": "Phrase",
+      "Description": "Cue (signal include); triggers: include / including / must contain / contains / containing / with / plus / add / allow / use.",
+      "Aliases": [
+        "include",
+        "including",
+        "must contain",
+        "contains",
+        "containing",
+        "with",
+        "plus",
+        "add",
+        "allow",
+        "use"
+      ],
+      "Properties": {
+        "Triggers": "include / including / must contain / contains / containing / with / plus / add / allow / use",
+        "Signal": "include"
+      }
+    },
+    {
+      "Id": "cue-unsup-position",
+      "Label": "start with",
+      "Category": "Phrase",
+      "Description": "Cue (signal unsupported:character position (start/end) is not expressible); triggers: start with / starts with / begin with / begins with / first character / first char / end with / ends with / last character / last char.",
+      "Aliases": [
+        "start with",
+        "starts with",
+        "begin with",
+        "begins with",
+        "first character",
+        "first char",
+        "end with",
+        "ends with",
+        "last character",
+        "last char"
+      ],
+      "Properties": {
+        "Triggers": "start with / starts with / begin with / begins with / first character / first char / end with / ends with / last character / last char",
+        "Signal": "unsupported:character position (start/end) is not expressible"
+      }
+    },
+    {
+      "Id": "cue-unsup-norepeat",
+      "Label": "no repeat",
+      "Category": "Phrase",
+      "Description": "Cue (signal unsupported:no-repeat / all-unique characters); triggers: no repeat / no repeats / no repeated / no repeating / non-repeating / unique characters / all unique / no duplicate / no duplicates.",
+      "Aliases": [
+        "no repeat",
+        "no repeats",
+        "no repeated",
+        "no repeating",
+        "non-repeating",
+        "unique characters",
+        "all unique",
+        "no duplicate",
+        "no duplicates"
+      ],
+      "Properties": {
+        "Triggers": "no repeat / no repeats / no repeated / no repeating / non-repeating / unique characters / all unique / no duplicate / no duplicates",
+        "Signal": "unsupported:no-repeat / all-unique characters"
+      }
+    },
+    {
+      "Id": "cue-unsup-pronounce",
+      "Label": "pronounceable",
+      "Category": "Phrase",
+      "Description": "Cue (signal unsupported:pronounceable output); triggers: pronounceable / easy to pronounce.",
+      "Aliases": [
+        "pronounceable",
+        "easy to pronounce"
+      ],
+      "Properties": {
+        "Triggers": "pronounceable / easy to pronounce",
+        "Signal": "unsupported:pronounceable output"
+      }
+    },
+    {
+      "Id": "cue-unsup-words",
+      "Label": "passphrase",
+      "Category": "Phrase",
+      "Description": "Cue (signal unsupported:word/passphrase output (this is character-based)); triggers: passphrase / pass phrase / random words / diceware / word-based / dictionary words.",
+      "Aliases": [
+        "passphrase",
+        "pass phrase",
+        "random words",
+        "diceware",
+        "word-based",
+        "dictionary words"
+      ],
+      "Properties": {
+        "Triggers": "passphrase / pass phrase / random words / diceware / word-based / dictionary words",
+        "Signal": "unsupported:word/passphrase output (this is character-based)"
+      }
+    },
+    {
+      "Id": "cue-unsup-alphabet",
+      "Label": "hexadecimal",
+      "Category": "Phrase",
+      "Description": "Cue (signal unsupported:custom alphabet like hex or base64); triggers: hexadecimal / hex string / base64 / base 64.",
+      "Aliases": [
+        "hexadecimal",
+        "hex string",
+        "base64",
+        "base 64"
+      ],
+      "Properties": {
+        "Triggers": "hexadecimal / hex string / base64 / base 64",
+        "Signal": "unsupported:custom alphabet like hex or base64"
+      }
+    },
+    {
+      "Id": "cue-unsup-charset",
+      "Label": "only characters",
+      "Category": "Phrase",
+      "Description": "Cue (signal unsupported:a custom character set (use class limits, or exclude/include specific characters instead)); triggers: only characters / only these characters / only the characters / only those characters / custom alphabet / character whitelist / from the character set / only from these characters / restricted to these characters.",
+      "Aliases": [
+        "only characters",
+        "only these characters",
+        "only the characters",
+        "only those characters",
+        "custom alphabet",
+        "character whitelist",
+        "from the character set",
+        "only from these characters",
+        "restricted to these characters"
+      ],
+      "Properties": {
+        "Triggers": "only characters / only these characters / only the characters / only those characters / custom alphabet / character whitelist / from the character set / only from these characters / restricted to these characters",
+        "Signal": "unsupported:a custom character set (use class limits, or exclude/include specific characters instead)"
+      }
+    }
+  ],
+  "Relations": [
+    {
+      "SourceId": "nl-root",
+      "TargetId": "intent-min",
+      "Type": "Resolves",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "nl-root",
+      "TargetId": "intent-max",
+      "Type": "Resolves",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "nl-root",
+      "TargetId": "intent-exact",
+      "Type": "Resolves",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "nl-root",
+      "TargetId": "intent-length",
+      "Type": "Resolves",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "nl-root",
+      "TargetId": "intent-restrict",
+      "Type": "Resolves",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "nl-root",
+      "TargetId": "intent-exclude",
+      "Type": "Resolves",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "nl-root",
+      "TargetId": "intent-include",
+      "Type": "Resolves",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "nl-root",
+      "TargetId": "intent-no-ambiguous",
+      "Type": "Resolves",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-qmin",
+      "TargetId": "intent-min",
+      "Type": "MapsTo",
+      "Description": "signal q.min",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-qmax",
+      "TargetId": "intent-max",
+      "Type": "MapsTo",
+      "Description": "signal q.max",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-qexact",
+      "TargetId": "intent-exact",
+      "Type": "MapsTo",
+      "Description": "signal q.exact",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-length",
+      "TargetId": "intent-length",
+      "Type": "MapsTo",
+      "Description": "signal target.length",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-each",
+      "TargetId": "intent-min",
+      "Type": "MapsTo",
+      "Description": "signal each.min",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-only",
+      "TargetId": "intent-restrict",
+      "Type": "MapsTo",
+      "Description": "signal only",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-letters",
+      "TargetId": "intent-restrict",
+      "Type": "MapsTo",
+      "Description": "signal only.uppercase\u002Blowercase",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-alnum",
+      "TargetId": "intent-restrict",
+      "Type": "MapsTo",
+      "Description": "signal only.uppercase\u002Blowercase\u002Bnumeric",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-digonly",
+      "TargetId": "intent-restrict",
+      "Type": "MapsTo",
+      "Description": "signal only.numeric",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-symonly",
+      "TargetId": "intent-restrict",
+      "Type": "MapsTo",
+      "Description": "signal only.symbol",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-loweronly",
+      "TargetId": "intent-restrict",
+      "Type": "MapsTo",
+      "Description": "signal only.lowercase",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-upperonly",
+      "TargetId": "intent-restrict",
+      "Type": "MapsTo",
+      "Description": "signal only.uppercase",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-pin",
+      "TargetId": "intent-restrict",
+      "Type": "MapsTo",
+      "Description": "signal preset.pin",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-noambig",
+      "TargetId": "intent-no-ambiguous",
+      "Type": "MapsTo",
+      "Description": "signal no_ambiguous",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-exclude",
+      "TargetId": "intent-exclude",
+      "Type": "MapsTo",
+      "Description": "signal exclude",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-include",
+      "TargetId": "intent-include",
+      "Type": "MapsTo",
+      "Description": "signal include",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-unsup-position",
+      "TargetId": "intent-restrict",
+      "Type": "MapsTo",
+      "Description": "signal unsupported:character position (start/end) is not expressible",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-unsup-norepeat",
+      "TargetId": "intent-restrict",
+      "Type": "MapsTo",
+      "Description": "signal unsupported:no-repeat / all-unique characters",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-unsup-pronounce",
+      "TargetId": "intent-restrict",
+      "Type": "MapsTo",
+      "Description": "signal unsupported:pronounceable output",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-unsup-words",
+      "TargetId": "intent-restrict",
+      "Type": "MapsTo",
+      "Description": "signal unsupported:word/passphrase output (this is character-based)",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-unsup-alphabet",
+      "TargetId": "intent-restrict",
+      "Type": "MapsTo",
+      "Description": "signal unsupported:custom alphabet like hex or base64",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cue-unsup-charset",
+      "TargetId": "intent-restrict",
+      "Type": "MapsTo",
+      "Description": "signal unsupported:a custom character set (use class limits, or exclude/include specific characters instead)",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    }
+  ],
+  "Dimensions": [],
+  "Policies": [],
+  "Cues": [
+    {
+      "Id": "cue-qmin",
+      "Trigger": "at least / minimum / min / at minimum / no fewer than / no less than / or more",
+      "Signal": "q.min"
+    },
+    {
+      "Id": "cue-qmax",
+      "Trigger": "at most / no more than / no greater than / up to / maximum / max / at maximum / or fewer / or less",
+      "Signal": "q.max"
+    },
+    {
+      "Id": "cue-qexact",
+      "Trigger": "exactly / precisely",
+      "Signal": "q.exact"
+    },
+    {
+      "Id": "cue-length",
+      "Trigger": "characters / character / chars / char / long / in length / length",
+      "Signal": "target.length"
+    },
+    {
+      "Id": "cue-each",
+      "Trigger": "of each / of each type / of each kind / of each class",
+      "Signal": "each.min"
+    },
+    {
+      "Id": "cue-only",
+      "Trigger": "only / just / nothing but",
+      "Signal": "only"
+    },
+    {
+      "Id": "cue-letters",
+      "Trigger": "letters / alphabetic / alphabetical / mixed case / mixed-case / upper and lower / both cases",
+      "Signal": "only.uppercase\u002Blowercase"
+    },
+    {
+      "Id": "cue-alnum",
+      "Trigger": "alphanumeric / alphanumerics / letters and numbers / letters and digits / numbers and letters / digits and letters",
+      "Signal": "only.uppercase\u002Blowercase\u002Bnumeric"
+    },
+    {
+      "Id": "cue-digonly",
+      "Trigger": "digits only / numbers only / numeric only / only digits / only numbers / just digits / just numbers",
+      "Signal": "only.numeric"
+    },
+    {
+      "Id": "cue-symonly",
+      "Trigger": "symbols only / only symbols / special only",
+      "Signal": "only.symbol"
+    },
+    {
+      "Id": "cue-loweronly",
+      "Trigger": "lowercase only / only lowercase / all lowercase",
+      "Signal": "only.lowercase"
+    },
+    {
+      "Id": "cue-upperonly",
+      "Trigger": "uppercase only / only uppercase / all uppercase / all caps",
+      "Signal": "only.uppercase"
+    },
+    {
+      "Id": "cue-pin",
+      "Trigger": "pin / pin code / pincode / passcode",
+      "Signal": "preset.pin"
+    },
+    {
+      "Id": "cue-noambig",
+      "Trigger": "no ambiguous / unambiguous / readable / no look-alikes / no look alikes / no lookalikes / no confusing / no confusables / no confusable characters / avoid confusing / easy to read / legible / memorable",
+      "Signal": "no_ambiguous"
+    },
+    {
+      "Id": "cue-exclude",
+      "Trigger": "exclude / excluding / without / avoid / omit / drop / remove / skip / no",
+      "Signal": "exclude"
+    },
+    {
+      "Id": "cue-include",
+      "Trigger": "include / including / must contain / contains / containing / with / plus / add / allow / use",
+      "Signal": "include"
+    },
+    {
+      "Id": "cue-unsup-position",
+      "Trigger": "start with / starts with / begin with / begins with / first character / first char / end with / ends with / last character / last char",
+      "Signal": "unsupported:character position (start/end) is not expressible"
+    },
+    {
+      "Id": "cue-unsup-norepeat",
+      "Trigger": "no repeat / no repeats / no repeated / no repeating / non-repeating / unique characters / all unique / no duplicate / no duplicates",
+      "Signal": "unsupported:no-repeat / all-unique characters"
+    },
+    {
+      "Id": "cue-unsup-pronounce",
+      "Trigger": "pronounceable / easy to pronounce",
+      "Signal": "unsupported:pronounceable output"
+    },
+    {
+      "Id": "cue-unsup-words",
+      "Trigger": "passphrase / pass phrase / random words / diceware / word-based / dictionary words",
+      "Signal": "unsupported:word/passphrase output (this is character-based)"
+    },
+    {
+      "Id": "cue-unsup-alphabet",
+      "Trigger": "hexadecimal / hex string / base64 / base 64",
+      "Signal": "unsupported:custom alphabet like hex or base64"
+    },
+    {
+      "Id": "cue-unsup-charset",
+      "Trigger": "only characters / only these characters / only the characters / only those characters / custom alphabet / character whitelist / from the character set / only from these characters / restricted to these characters",
+      "Signal": "unsupported:a custom character set (use class limits, or exclude/include specific characters instead)"
+    }
+  ],
+  "FitSignals": [],
+  "Generators": [],
+  "ParameterCount": 74
+}

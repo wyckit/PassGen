@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>PassGen.Engine</RootNamespace>
+    <AssemblyName>PassGen.Engine</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- the engine now understands language by reading the TLM bundle (TLM = the model) -->
+    <ProjectReference Include="..\PassGen.Tlm\PassGen.Tlm.csproj" />
+  </ItemGroup>
+
+</Project>

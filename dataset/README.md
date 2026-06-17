@@ -1,0 +1,107 @@
+# RSRM Random-String TLM Dataset
+
+A **standalone**, self-contained knowledge dataset for the constraint-based
+random-string / password generator (`randomstringllm` / `PassGen.Engine`),
+authored in the native **RSRM TLM** format and compiled to `.tlmz` artifacts that
+load and validate inside the live RSRM runtime unchanged.
+
+Nothing here depends on the full `rsrm/` repo. The compiler/decompiler is the
+small self-contained `PassGen.Tlm` library; the `.source.json` files are the
+canonical source-of-truth; the `.tlmz` artifacts are byte-identical to what the
+real RSRM compiler would emit for the same source.
+
+## Layout
+
+```
+dataset/
+  source/        *.source.json    generated TlmPackage source
+  compiled/      *.tlmz           compiled artifacts (envelope + Brotli + JSON)
+  decompiled/    *.decompiled.json round-trip output (verification / inspection)
+  README.md
+```
+
+The source is authored in C# by `PassGen.Tlm.Cli/DatasetAuthor.cs` (`tlm author`) —
+no Python.
+
+## The bundle (7 linked TLMs)
+
+| TLM | Role | Prio | Imports | Covers |
+|-----|------|------|---------|--------|
+| `rs-char-classes`    | Foundation | 100  | -                         | Alphabet, the 4 classes, and every individual character; ambiguous set; safe/extended symbol pools |
+| `rs-constraint-spec` | Logic      | 120  | char-classes              | The `ConstraintSpec` contract: length (exact/min/max), per-class allowed/min/max, exclude/include, feasibility |
+| `rs-operations`      | Interface  | 110  | constraint-spec           | Operations that narrow the spec: only / exclude / include / min / max / length / no-ambiguous / letters / alphanumeric / digits / symbols |
+| `rs-entropy`         | Analysis   | 90   | constraint-spec           | Strength model: bits = log2(valid-string count), charset size, crack time, strength bands, reference points, key insights |
+| `rs-generation`      | Policy     | 130  | constraint-spec, char-classes | Deterministic algorithm: validate -> place minimums -> uniform fill -> validate/repair; CSPRNG vs seeded RNG; bias avoidance (5 policies) |
+| `rs-nl-vocabulary`   | Interface  | 105  | operations                | English phrasing -> constraint intents, with 12 trigger cues; ambiguity flag |
+| `rs-bundle`          | Overlay    | 1000 | all six                   | Index TLM: domain root + module dependency DAG |
+
+Totals: **178 concepts, 229 relations, 358 parameters.** All validate clean
+(0 errors, 0 warnings) and round-trip losslessly.
+
+## TLM format (recap)
+
+A TLM is a `TlmPackage`:
+
+- **Manifest** - metadata (`TlmId`, `Role`, `Priority`, `Version`, `Checksum`,
+  `HotSwapPolicy`, `StabilityScore`) + `Imports` (the dependency DAG).
+- **Concepts** - `SymbolicConcept { Id, Label, Category, Description, Aliases, Properties }`.
+- **Relations** - `SymbolicRelation { SourceId, TargetId, Type, Description, Strength, ... }`.
+- **Dimensions / Policies / Cues / FitSignals / Generators** - optional structured extras.
+
+A `.tlmz` artifact is:
+
+```
+[16-byte envelope: "TLMZ" magic + uint16 major + uint16 minor + uint32 flags + uint32 reserved]
+[Brotli-compressed UTF-8 compact JSON of the TlmPackage]
+```
+
+The `Checksum` is the SHA-256 of the compact JSON of the package with the stored
+checksum field cleared. RSRM recomputes it on load and rejects any mismatch.
+Because the `PassGen.Tlm` model classes are byte-faithful ports of
+`Rsrm.Core.Models`, this tool's checksums match RSRM's exactly - verified by
+loading real RSRM artifacts (including `dictionary-core`: 169,164 concepts /
+662,057 relations) through this tool and confirming their stored checksums.
+
+## Build / verify
+
+```pwsh
+# one shot: build tool, compile all, decompile all, verify round-trip
+./build-dataset.ps1
+```
+
+Or drive the tool directly (the `tlm` CLI lives in `PassGen.Tlm.Cli`):
+
+```pwsh
+dotnet run --project PassGen.Tlm.Cli -- compile   all   --root dataset
+dotnet run --project PassGen.Tlm.Cli -- decompile all   --root dataset
+dotnet run --project PassGen.Tlm.Cli -- validate  all   --root dataset
+dotnet run --project PassGen.Tlm.Cli -- verify          --root dataset
+dotnet run --project PassGen.Tlm.Cli -- list            --root dataset
+dotnet run --project PassGen.Tlm.Cli -- stats rs-entropy --root dataset
+```
+
+`verify` proves losslessness: for each TLM it compiles the source, decompiles the
+artifact, recompresses, and asserts the bytes are identical AND the checksum is
+self-consistent. Compiles are reproducible (the source pins `CreatedUtc`), so the
+artifacts are deterministic across machines.
+
+## Loading into live RSRM (optional)
+
+The `.tlmz` files are drop-in. Copy them next to RSRM's other compiled TLMs and
+add them to the boot config, or hot-load at runtime:
+
+```
+/load dataset/compiled/rs-bundle.tlmz
+```
+
+RSRM will validate the checksum, mount the graph, and resolve the `Imports` DAG.
+
+## Regenerating / growing the dataset
+
+The `.source.json` files are generated by the C# author. To grow coverage (add a
+class alias or a cue synonym), edit `PassGen.Tlm.Cli/DatasetAuthor.cs`, then:
+
+```pwsh
+dotnet run --project PassGen.Tlm.Cli -- author --root dataset   # regenerate source
+./build-dataset.ps1                                              # compile + verify
+```

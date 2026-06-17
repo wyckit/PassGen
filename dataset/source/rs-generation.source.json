@@ -1,0 +1,305 @@
+{
+  "Manifest": {
+    "Metadata": {
+      "TlmId": "rs-generation",
+      "IsMutable": false,
+      "Role": 5,
+      "Priority": 130,
+      "Version": "1.0.0",
+      "Checksum": "",
+      "HotSwapPolicy": 1,
+      "StabilityScore": 0.9
+    },
+    "Imports": [
+      "rs-constraint-spec",
+      "rs-char-classes"
+    ],
+    "Derives": [],
+    "CreatedUtc": "2026-06-17T00:00:00Z",
+    "SchemaVersion": "1.0"
+  },
+  "Concepts": [
+    {
+      "Id": "gen-root",
+      "Label": "generation algorithm",
+      "Category": "Algorithm",
+      "Description": "Deterministic generator: validate spec -\u003E place mandatory minimums -\u003E uniform-fill the remainder -\u003E validate output (-\u003E repair if needed).",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "step-validate-spec",
+      "Label": "validate spec",
+      "Category": "Step",
+      "Description": "Feasibility check before any sampling (validate_spec).",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "step-place-minimums",
+      "Label": "place minimums",
+      "Category": "Step",
+      "Description": "Place each class\u0027s guaranteed minimum first, sampled within-class uniformly.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "step-fill-uniform",
+      "Label": "uniform fill",
+      "Category": "Step",
+      "Description": "Fill remaining positions by sampling uniformly from the UNION of all allowed, non-maxed characters.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "step-validate-output",
+      "Label": "validate output",
+      "Category": "Step",
+      "Description": "Verify the produced string satisfies the spec (validator.check).",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "step-repair",
+      "Label": "repair",
+      "Category": "Step",
+      "Description": "Relax infeasible/over-constrained predictions and retry.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "rng-csprng",
+      "Label": "CSPRNG",
+      "Category": "Rng",
+      "Description": "Cryptographically secure RNG (RandomNumberGenerator / secrets.SystemRandom). Used by default (seed is null) for real passwords.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "rng-seeded",
+      "Label": "seeded PRNG",
+      "Category": "Rng",
+      "Description": "Reproducible Mersenne-Twister RNG used ONLY when an explicit int seed is given (tests/demos).",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "risk-mt-insecure",
+      "Label": "Mersenne Twister is not secure",
+      "Category": "Risk",
+      "Description": "MT state is reconstructable from ~624 outputs \u2014 never use for real passwords.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "bias-per-class",
+      "Label": "per-class sampling bias",
+      "Category": "Antipattern",
+      "Description": "Picking a class first then a char within it over-represents small classes (digits ~2.6x). Avoided by flat union sampling.",
+      "Aliases": [],
+      "Properties": {}
+    }
+  ],
+  "Relations": [
+    {
+      "SourceId": "gen-root",
+      "TargetId": "step-validate-spec",
+      "Type": "HasStep",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "gen-root",
+      "TargetId": "step-place-minimums",
+      "Type": "HasStep",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "gen-root",
+      "TargetId": "step-fill-uniform",
+      "Type": "HasStep",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "gen-root",
+      "TargetId": "step-validate-output",
+      "Type": "HasStep",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "gen-root",
+      "TargetId": "step-repair",
+      "Type": "HasStep",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "step-validate-spec",
+      "TargetId": "step-place-minimums",
+      "Type": "Precedes",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "step-place-minimums",
+      "TargetId": "step-fill-uniform",
+      "Type": "Precedes",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "step-fill-uniform",
+      "TargetId": "step-validate-output",
+      "Type": "Precedes",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "step-validate-output",
+      "TargetId": "step-repair",
+      "Type": "TriggersOnFail",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "gen-root",
+      "TargetId": "rng-csprng",
+      "Type": "UsesByDefault",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "gen-root",
+      "TargetId": "rng-seeded",
+      "Type": "UsesForTests",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "rng-seeded",
+      "TargetId": "risk-mt-insecure",
+      "Type": "HasRisk",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "step-fill-uniform",
+      "TargetId": "bias-per-class",
+      "Type": "Avoids",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "step-place-minimums",
+      "TargetId": "bias-per-class",
+      "Type": "Avoids",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    }
+  ],
+  "Dimensions": [],
+  "Policies": [
+    {
+      "Id": "pol-default-csprng",
+      "Rule": "seed is null (default)",
+      "Action": "use the CSPRNG (RandomNumberGenerator) for fresh entropy per string"
+    },
+    {
+      "Id": "pol-seeded-tests",
+      "Rule": "an explicit integer seed is supplied",
+      "Action": "use a reproducible Mersenne-Twister RNG \u2014 tests and demos only"
+    },
+    {
+      "Id": "pol-minimums-first",
+      "Rule": "the spec declares per-class minimums",
+      "Action": "place those mandatory characters first (within-class uniform), then uniform-fill"
+    },
+    {
+      "Id": "pol-uniform-fill",
+      "Rule": "filling the remaining positions",
+      "Action": "sample each character uniformly from the union of allowed, non-maxed characters"
+    },
+    {
+      "Id": "pol-repair",
+      "Rule": "the spec is infeasible or output fails validation",
+      "Action": "run a repair pass that relaxes the offending constraint, then retry"
+    }
+  ],
+  "Cues": [],
+  "FitSignals": [],
+  "Generators": [],
+  "ParameterCount": 19
+}

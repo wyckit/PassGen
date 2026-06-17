@@ -1,0 +1,490 @@
+{
+  "Manifest": {
+    "Metadata": {
+      "TlmId": "rs-constraint-spec",
+      "IsMutable": false,
+      "Role": 1,
+      "Priority": 120,
+      "Version": "1.0.0",
+      "Checksum": "",
+      "HotSwapPolicy": 1,
+      "StabilityScore": 0.9
+    },
+    "Imports": [
+      "rs-char-classes"
+    ],
+    "Derives": [],
+    "CreatedUtc": "2026-06-17T00:00:00Z",
+    "SchemaVersion": "1.0"
+  },
+  "Concepts": [
+    {
+      "Id": "spec-root",
+      "Label": "ConstraintSpec",
+      "Category": "Schema",
+      "Description": "The structured contract that is the single source of truth between the natural-language front end and the deterministic generator. JSON shape: { length:{exact,min,max}, classes:{\u003Cclass\u003E-\u003E{allowed,min,max}}, exclude_chars[], include_chars[] }.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "field-length",
+      "Label": "length",
+      "Category": "SpecField",
+      "Description": "Length constraint: exact, or a [min,max] range.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "field-classes",
+      "Label": "classes",
+      "Category": "SpecField",
+      "Description": "Per-class allow/min/max constraints for the four character classes.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "field-exclude",
+      "Label": "exclude_chars",
+      "Category": "SpecField",
+      "Description": "Explicit characters the output must never contain.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "field-include",
+      "Label": "include_chars",
+      "Category": "SpecField",
+      "Description": "Explicit characters the output must contain at least once.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "slot-length-exact",
+      "Label": "length.exact",
+      "Category": "SpecSlot",
+      "Description": "Exact required length (mutually exclusive with min/max).",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "slot-length-min",
+      "Label": "length.min",
+      "Category": "SpecSlot",
+      "Description": "Minimum length bound.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "slot-length-max",
+      "Label": "length.max",
+      "Category": "SpecSlot",
+      "Description": "Maximum length bound (default cap, e.g. 16).",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "slot-allowed",
+      "Label": "class.allowed",
+      "Category": "SpecSlot",
+      "Description": "Whether characters from this class may appear (boolean gate).",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "slot-class-min",
+      "Label": "class.min",
+      "Category": "SpecSlot",
+      "Description": "Guaranteed minimum count of characters from this class.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "slot-class-max",
+      "Label": "class.max",
+      "Category": "SpecSlot",
+      "Description": "Maximum count of characters from this class.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "cc-uppercase",
+      "Label": "uppercase constraint",
+      "Category": "ClassConstraint",
+      "Description": "Allow/min/max constraint record for the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "cc-lowercase",
+      "Label": "lowercase constraint",
+      "Category": "ClassConstraint",
+      "Description": "Allow/min/max constraint record for the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "cc-numeric",
+      "Label": "numeric constraint",
+      "Category": "ClassConstraint",
+      "Description": "Allow/min/max constraint record for the numeric class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "numeric"
+      }
+    },
+    {
+      "Id": "cc-symbol",
+      "Label": "symbol constraint",
+      "Category": "ClassConstraint",
+      "Description": "Allow/min/max constraint record for the symbol class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "symbol"
+      }
+    },
+    {
+      "Id": "spec-feasibility",
+      "Label": "feasibility",
+      "Category": "Invariant",
+      "Description": "validate_spec checks the spec is satisfiable: sum of class minimums \u003C= max length, every required class allowed, exclude/include not contradictory.",
+      "Aliases": [],
+      "Properties": {}
+    }
+  ],
+  "Relations": [
+    {
+      "SourceId": "spec-root",
+      "TargetId": "field-length",
+      "Type": "HasField",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "spec-root",
+      "TargetId": "field-classes",
+      "Type": "HasField",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "spec-root",
+      "TargetId": "field-exclude",
+      "Type": "HasField",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "spec-root",
+      "TargetId": "field-include",
+      "Type": "HasField",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "field-length",
+      "TargetId": "slot-length-exact",
+      "Type": "HasSlot",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "field-length",
+      "TargetId": "slot-length-min",
+      "Type": "HasSlot",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "field-length",
+      "TargetId": "slot-length-max",
+      "Type": "HasSlot",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "field-classes",
+      "TargetId": "cc-uppercase",
+      "Type": "Contains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cc-uppercase",
+      "TargetId": "slot-allowed",
+      "Type": "HasSlot",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cc-uppercase",
+      "TargetId": "slot-class-min",
+      "Type": "HasSlot",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cc-uppercase",
+      "TargetId": "slot-class-max",
+      "Type": "HasSlot",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "field-classes",
+      "TargetId": "cc-lowercase",
+      "Type": "Contains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cc-lowercase",
+      "TargetId": "slot-allowed",
+      "Type": "HasSlot",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cc-lowercase",
+      "TargetId": "slot-class-min",
+      "Type": "HasSlot",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cc-lowercase",
+      "TargetId": "slot-class-max",
+      "Type": "HasSlot",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "field-classes",
+      "TargetId": "cc-numeric",
+      "Type": "Contains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cc-numeric",
+      "TargetId": "slot-allowed",
+      "Type": "HasSlot",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cc-numeric",
+      "TargetId": "slot-class-min",
+      "Type": "HasSlot",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cc-numeric",
+      "TargetId": "slot-class-max",
+      "Type": "HasSlot",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "field-classes",
+      "TargetId": "cc-symbol",
+      "Type": "Contains",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cc-symbol",
+      "TargetId": "slot-allowed",
+      "Type": "HasSlot",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cc-symbol",
+      "TargetId": "slot-class-min",
+      "Type": "HasSlot",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "cc-symbol",
+      "TargetId": "slot-class-max",
+      "Type": "HasSlot",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "spec-root",
+      "TargetId": "spec-feasibility",
+      "Type": "MustSatisfy",
+      "Description": "a spec is only valid if feasible",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "spec-feasibility",
+      "TargetId": "slot-class-min",
+      "Type": "Checks",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "spec-feasibility",
+      "TargetId": "slot-length-max",
+      "Type": "Checks",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "field-exclude",
+      "TargetId": "field-include",
+      "Type": "MustNotContradict",
+      "Description": "a char cannot be both excluded and required",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    }
+  ],
+  "Dimensions": [],
+  "Policies": [],
+  "Cues": [],
+  "FitSignals": [],
+  "Generators": [],
+  "ParameterCount": 31
+}

@@ -1,0 +1,2003 @@
+{
+  "Manifest": {
+    "Metadata": {
+      "TlmId": "rs-char-classes",
+      "IsMutable": false,
+      "Role": 0,
+      "Priority": 100,
+      "Version": "1.0.0",
+      "Checksum": "",
+      "HotSwapPolicy": 1,
+      "StabilityScore": 1
+    },
+    "Imports": [],
+    "Derives": [],
+    "CreatedUtc": "2026-06-17T00:00:00Z",
+    "SchemaVersion": "1.0"
+  },
+  "Concepts": [
+    {
+      "Id": "cls-alphabet",
+      "Label": "alphabet",
+      "Category": "Domain",
+      "Description": "The full character alphabet available to the random-string generator: four classes totalling 75 characters in the default safe configuration.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "set-ambiguous",
+      "Label": "ambiguous characters",
+      "Category": "CharSet",
+      "Description": "Visually confusable characters (0 O o 1 l I) removed by the \u0027no ambiguous\u0027 option; dropping them shrinks the charset 75-\u003E69 and costs ~2 bits of entropy.",
+      "Aliases": [],
+      "Properties": {
+        "Chars": "0Oo1lI"
+      }
+    },
+    {
+      "Id": "pool-symbol-safe",
+      "Label": "safe symbol pool",
+      "Category": "CharPool",
+      "Description": "Default symbol pool: !@#$%^\u0026*-_=\u002B? (13 chars) \u2014 shell/URL friendly.",
+      "Aliases": [],
+      "Properties": {
+        "Chars": "!@#$%^\u0026*-_=\u002B?",
+        "Size": "13"
+      }
+    },
+    {
+      "Id": "pool-symbol-extended",
+      "Label": "extended symbol pool",
+      "Category": "CharPool",
+      "Description": "Opt-in full ASCII punctuation pool (superset of the safe pool).",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "class-uppercase",
+      "Label": "uppercase",
+      "Category": "CharClass",
+      "Description": "Uppercase letters A-Z (26 characters).",
+      "Aliases": [
+        "uppercase",
+        "upper",
+        "uppers",
+        "capital",
+        "capitals",
+        "caps",
+        "upper case",
+        "upper-case",
+        "uppercase letters",
+        "capital letters"
+      ],
+      "Properties": {
+        "Chars": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "Size": "26"
+      }
+    },
+    {
+      "Id": "ch-uppercase-65",
+      "Label": "A",
+      "Category": "Character",
+      "Description": "Character \u0027A\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-66",
+      "Label": "B",
+      "Category": "Character",
+      "Description": "Character \u0027B\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-67",
+      "Label": "C",
+      "Category": "Character",
+      "Description": "Character \u0027C\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-68",
+      "Label": "D",
+      "Category": "Character",
+      "Description": "Character \u0027D\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-69",
+      "Label": "E",
+      "Category": "Character",
+      "Description": "Character \u0027E\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-70",
+      "Label": "F",
+      "Category": "Character",
+      "Description": "Character \u0027F\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-71",
+      "Label": "G",
+      "Category": "Character",
+      "Description": "Character \u0027G\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-72",
+      "Label": "H",
+      "Category": "Character",
+      "Description": "Character \u0027H\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-73",
+      "Label": "I",
+      "Category": "Character",
+      "Description": "Character \u0027I\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-74",
+      "Label": "J",
+      "Category": "Character",
+      "Description": "Character \u0027J\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-75",
+      "Label": "K",
+      "Category": "Character",
+      "Description": "Character \u0027K\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-76",
+      "Label": "L",
+      "Category": "Character",
+      "Description": "Character \u0027L\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-77",
+      "Label": "M",
+      "Category": "Character",
+      "Description": "Character \u0027M\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-78",
+      "Label": "N",
+      "Category": "Character",
+      "Description": "Character \u0027N\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-79",
+      "Label": "O",
+      "Category": "Character",
+      "Description": "Character \u0027O\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-80",
+      "Label": "P",
+      "Category": "Character",
+      "Description": "Character \u0027P\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-81",
+      "Label": "Q",
+      "Category": "Character",
+      "Description": "Character \u0027Q\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-82",
+      "Label": "R",
+      "Category": "Character",
+      "Description": "Character \u0027R\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-83",
+      "Label": "S",
+      "Category": "Character",
+      "Description": "Character \u0027S\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-84",
+      "Label": "T",
+      "Category": "Character",
+      "Description": "Character \u0027T\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-85",
+      "Label": "U",
+      "Category": "Character",
+      "Description": "Character \u0027U\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-86",
+      "Label": "V",
+      "Category": "Character",
+      "Description": "Character \u0027V\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-87",
+      "Label": "W",
+      "Category": "Character",
+      "Description": "Character \u0027W\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-88",
+      "Label": "X",
+      "Category": "Character",
+      "Description": "Character \u0027X\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-89",
+      "Label": "Y",
+      "Category": "Character",
+      "Description": "Character \u0027Y\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "ch-uppercase-90",
+      "Label": "Z",
+      "Category": "Character",
+      "Description": "Character \u0027Z\u0027 of the uppercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "uppercase"
+      }
+    },
+    {
+      "Id": "class-lowercase",
+      "Label": "lowercase",
+      "Category": "CharClass",
+      "Description": "Lowercase letters a-z (26 characters).",
+      "Aliases": [
+        "lowercase",
+        "lower",
+        "lowers",
+        "lower case",
+        "lower-case",
+        "lowercase letters",
+        "small letters"
+      ],
+      "Properties": {
+        "Chars": "abcdefghijklmnopqrstuvwxyz",
+        "Size": "26"
+      }
+    },
+    {
+      "Id": "ch-lowercase-97",
+      "Label": "a",
+      "Category": "Character",
+      "Description": "Character \u0027a\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-98",
+      "Label": "b",
+      "Category": "Character",
+      "Description": "Character \u0027b\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-99",
+      "Label": "c",
+      "Category": "Character",
+      "Description": "Character \u0027c\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-100",
+      "Label": "d",
+      "Category": "Character",
+      "Description": "Character \u0027d\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-101",
+      "Label": "e",
+      "Category": "Character",
+      "Description": "Character \u0027e\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-102",
+      "Label": "f",
+      "Category": "Character",
+      "Description": "Character \u0027f\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-103",
+      "Label": "g",
+      "Category": "Character",
+      "Description": "Character \u0027g\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-104",
+      "Label": "h",
+      "Category": "Character",
+      "Description": "Character \u0027h\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-105",
+      "Label": "i",
+      "Category": "Character",
+      "Description": "Character \u0027i\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-106",
+      "Label": "j",
+      "Category": "Character",
+      "Description": "Character \u0027j\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-107",
+      "Label": "k",
+      "Category": "Character",
+      "Description": "Character \u0027k\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-108",
+      "Label": "l",
+      "Category": "Character",
+      "Description": "Character \u0027l\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-109",
+      "Label": "m",
+      "Category": "Character",
+      "Description": "Character \u0027m\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-110",
+      "Label": "n",
+      "Category": "Character",
+      "Description": "Character \u0027n\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-111",
+      "Label": "o",
+      "Category": "Character",
+      "Description": "Character \u0027o\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-112",
+      "Label": "p",
+      "Category": "Character",
+      "Description": "Character \u0027p\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-113",
+      "Label": "q",
+      "Category": "Character",
+      "Description": "Character \u0027q\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-114",
+      "Label": "r",
+      "Category": "Character",
+      "Description": "Character \u0027r\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-115",
+      "Label": "s",
+      "Category": "Character",
+      "Description": "Character \u0027s\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-116",
+      "Label": "t",
+      "Category": "Character",
+      "Description": "Character \u0027t\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-117",
+      "Label": "u",
+      "Category": "Character",
+      "Description": "Character \u0027u\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-118",
+      "Label": "v",
+      "Category": "Character",
+      "Description": "Character \u0027v\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-119",
+      "Label": "w",
+      "Category": "Character",
+      "Description": "Character \u0027w\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-120",
+      "Label": "x",
+      "Category": "Character",
+      "Description": "Character \u0027x\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-121",
+      "Label": "y",
+      "Category": "Character",
+      "Description": "Character \u0027y\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "ch-lowercase-122",
+      "Label": "z",
+      "Category": "Character",
+      "Description": "Character \u0027z\u0027 of the lowercase class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "lowercase"
+      }
+    },
+    {
+      "Id": "class-numeric",
+      "Label": "numeric",
+      "Category": "CharClass",
+      "Description": "Decimal digits 0-9 (10 characters).",
+      "Aliases": [
+        "numeric",
+        "digit",
+        "digits",
+        "number",
+        "numbers",
+        "numeral",
+        "numerals",
+        "numerics"
+      ],
+      "Properties": {
+        "Chars": "0123456789",
+        "Size": "10"
+      }
+    },
+    {
+      "Id": "ch-numeric-48",
+      "Label": "0",
+      "Category": "Character",
+      "Description": "Character \u00270\u0027 of the numeric class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "numeric"
+      }
+    },
+    {
+      "Id": "ch-numeric-49",
+      "Label": "1",
+      "Category": "Character",
+      "Description": "Character \u00271\u0027 of the numeric class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "numeric"
+      }
+    },
+    {
+      "Id": "ch-numeric-50",
+      "Label": "2",
+      "Category": "Character",
+      "Description": "Character \u00272\u0027 of the numeric class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "numeric"
+      }
+    },
+    {
+      "Id": "ch-numeric-51",
+      "Label": "3",
+      "Category": "Character",
+      "Description": "Character \u00273\u0027 of the numeric class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "numeric"
+      }
+    },
+    {
+      "Id": "ch-numeric-52",
+      "Label": "4",
+      "Category": "Character",
+      "Description": "Character \u00274\u0027 of the numeric class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "numeric"
+      }
+    },
+    {
+      "Id": "ch-numeric-53",
+      "Label": "5",
+      "Category": "Character",
+      "Description": "Character \u00275\u0027 of the numeric class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "numeric"
+      }
+    },
+    {
+      "Id": "ch-numeric-54",
+      "Label": "6",
+      "Category": "Character",
+      "Description": "Character \u00276\u0027 of the numeric class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "numeric"
+      }
+    },
+    {
+      "Id": "ch-numeric-55",
+      "Label": "7",
+      "Category": "Character",
+      "Description": "Character \u00277\u0027 of the numeric class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "numeric"
+      }
+    },
+    {
+      "Id": "ch-numeric-56",
+      "Label": "8",
+      "Category": "Character",
+      "Description": "Character \u00278\u0027 of the numeric class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "numeric"
+      }
+    },
+    {
+      "Id": "ch-numeric-57",
+      "Label": "9",
+      "Category": "Character",
+      "Description": "Character \u00279\u0027 of the numeric class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "numeric"
+      }
+    },
+    {
+      "Id": "class-symbol",
+      "Label": "symbol",
+      "Category": "CharClass",
+      "Description": "Default safe symbol subset (13 characters).",
+      "Aliases": [
+        "symbol",
+        "symbols",
+        "special",
+        "specials",
+        "special character",
+        "special characters",
+        "special chars",
+        "punctuation",
+        "punctuations",
+        "sign",
+        "signs"
+      ],
+      "Properties": {
+        "Chars": "!@#$%^\u0026*-_=\u002B?",
+        "Size": "13"
+      }
+    },
+    {
+      "Id": "ch-symbol-33",
+      "Label": "!",
+      "Category": "Character",
+      "Description": "Character \u0027!\u0027 of the symbol class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "symbol"
+      }
+    },
+    {
+      "Id": "ch-symbol-64",
+      "Label": "@",
+      "Category": "Character",
+      "Description": "Character \u0027@\u0027 of the symbol class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "symbol"
+      }
+    },
+    {
+      "Id": "ch-symbol-35",
+      "Label": "#",
+      "Category": "Character",
+      "Description": "Character \u0027#\u0027 of the symbol class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "symbol"
+      }
+    },
+    {
+      "Id": "ch-symbol-36",
+      "Label": "$",
+      "Category": "Character",
+      "Description": "Character \u0027$\u0027 of the symbol class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "symbol"
+      }
+    },
+    {
+      "Id": "ch-symbol-37",
+      "Label": "%",
+      "Category": "Character",
+      "Description": "Character \u0027%\u0027 of the symbol class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "symbol"
+      }
+    },
+    {
+      "Id": "ch-symbol-94",
+      "Label": "^",
+      "Category": "Character",
+      "Description": "Character \u0027^\u0027 of the symbol class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "symbol"
+      }
+    },
+    {
+      "Id": "ch-symbol-38",
+      "Label": "\u0026",
+      "Category": "Character",
+      "Description": "Character \u0027\u0026\u0027 of the symbol class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "symbol"
+      }
+    },
+    {
+      "Id": "ch-symbol-42",
+      "Label": "*",
+      "Category": "Character",
+      "Description": "Character \u0027*\u0027 of the symbol class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "symbol"
+      }
+    },
+    {
+      "Id": "ch-symbol-45",
+      "Label": "-",
+      "Category": "Character",
+      "Description": "Character \u0027-\u0027 of the symbol class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "symbol"
+      }
+    },
+    {
+      "Id": "ch-symbol-95",
+      "Label": "_",
+      "Category": "Character",
+      "Description": "Character \u0027_\u0027 of the symbol class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "symbol"
+      }
+    },
+    {
+      "Id": "ch-symbol-61",
+      "Label": "=",
+      "Category": "Character",
+      "Description": "Character \u0027=\u0027 of the symbol class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "symbol"
+      }
+    },
+    {
+      "Id": "ch-symbol-43",
+      "Label": "\u002B",
+      "Category": "Character",
+      "Description": "Character \u0027\u002B\u0027 of the symbol class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "symbol"
+      }
+    },
+    {
+      "Id": "ch-symbol-63",
+      "Label": "?",
+      "Category": "Character",
+      "Description": "Character \u0027?\u0027 of the symbol class.",
+      "Aliases": [],
+      "Properties": {
+        "Class": "symbol"
+      }
+    }
+  ],
+  "Relations": [
+    {
+      "SourceId": "class-uppercase",
+      "TargetId": "cls-alphabet",
+      "Type": "MemberOf",
+      "Description": "uppercase class is part of the alphabet",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-65",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-66",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-67",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-68",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-69",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-70",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-71",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-72",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-73",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-73",
+      "TargetId": "set-ambiguous",
+      "Type": "IsAmbiguous",
+      "Description": "\u0027I\u0027 is visually ambiguous",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-74",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-75",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-76",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-77",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-78",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-79",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-79",
+      "TargetId": "set-ambiguous",
+      "Type": "IsAmbiguous",
+      "Description": "\u0027O\u0027 is visually ambiguous",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-80",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-81",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-82",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-83",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-84",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-85",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-86",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-87",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-88",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-89",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-uppercase-90",
+      "TargetId": "class-uppercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "class-lowercase",
+      "TargetId": "cls-alphabet",
+      "Type": "MemberOf",
+      "Description": "lowercase class is part of the alphabet",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-97",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-98",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-99",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-100",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-101",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-102",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-103",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-104",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-105",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-106",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-107",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-108",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-108",
+      "TargetId": "set-ambiguous",
+      "Type": "IsAmbiguous",
+      "Description": "\u0027l\u0027 is visually ambiguous",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-109",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-110",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-111",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-111",
+      "TargetId": "set-ambiguous",
+      "Type": "IsAmbiguous",
+      "Description": "\u0027o\u0027 is visually ambiguous",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-112",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-113",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-114",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-115",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-116",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-117",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-118",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-119",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-120",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-121",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-lowercase-122",
+      "TargetId": "class-lowercase",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "class-numeric",
+      "TargetId": "cls-alphabet",
+      "Type": "MemberOf",
+      "Description": "numeric class is part of the alphabet",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-numeric-48",
+      "TargetId": "class-numeric",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-numeric-48",
+      "TargetId": "set-ambiguous",
+      "Type": "IsAmbiguous",
+      "Description": "\u00270\u0027 is visually ambiguous",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-numeric-49",
+      "TargetId": "class-numeric",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-numeric-49",
+      "TargetId": "set-ambiguous",
+      "Type": "IsAmbiguous",
+      "Description": "\u00271\u0027 is visually ambiguous",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-numeric-50",
+      "TargetId": "class-numeric",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-numeric-51",
+      "TargetId": "class-numeric",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-numeric-52",
+      "TargetId": "class-numeric",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-numeric-53",
+      "TargetId": "class-numeric",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-numeric-54",
+      "TargetId": "class-numeric",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-numeric-55",
+      "TargetId": "class-numeric",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-numeric-56",
+      "TargetId": "class-numeric",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-numeric-57",
+      "TargetId": "class-numeric",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "class-symbol",
+      "TargetId": "cls-alphabet",
+      "Type": "MemberOf",
+      "Description": "symbol class is part of the alphabet",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-symbol-33",
+      "TargetId": "class-symbol",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-symbol-64",
+      "TargetId": "class-symbol",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-symbol-35",
+      "TargetId": "class-symbol",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-symbol-36",
+      "TargetId": "class-symbol",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-symbol-37",
+      "TargetId": "class-symbol",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-symbol-94",
+      "TargetId": "class-symbol",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-symbol-38",
+      "TargetId": "class-symbol",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-symbol-42",
+      "TargetId": "class-symbol",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-symbol-45",
+      "TargetId": "class-symbol",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-symbol-95",
+      "TargetId": "class-symbol",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-symbol-61",
+      "TargetId": "class-symbol",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-symbol-43",
+      "TargetId": "class-symbol",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "ch-symbol-63",
+      "TargetId": "class-symbol",
+      "Type": "MemberOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "class-uppercase",
+      "TargetId": "class-lowercase",
+      "Type": "SiblingOf",
+      "Description": "co-equal character classes",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "class-lowercase",
+      "TargetId": "class-numeric",
+      "Type": "SiblingOf",
+      "Description": "co-equal character classes",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "class-numeric",
+      "TargetId": "class-symbol",
+      "Type": "SiblingOf",
+      "Description": "co-equal character classes",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "class-symbol",
+      "TargetId": "pool-symbol-safe",
+      "Type": "DrawsFrom",
+      "Description": "default symbols come from the safe pool",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "class-symbol",
+      "TargetId": "pool-symbol-extended",
+      "Type": "CanDrawFrom",
+      "Description": "opt-in extended punctuation",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "pool-symbol-extended",
+      "TargetId": "pool-symbol-safe",
+      "Type": "Superset",
+      "Description": "extended \u2287 safe",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "set-ambiguous",
+      "TargetId": "cls-alphabet",
+      "Type": "FilteredFrom",
+      "Description": "removed by \u0027no ambiguous\u0027",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    }
+  ],
+  "Dimensions": [],
+  "Policies": [],
+  "Cues": [],
+  "FitSignals": [],
+  "Generators": [],
+  "ParameterCount": 178
+}

@@ -1,0 +1,247 @@
+{
+  "Manifest": {
+    "Metadata": {
+      "TlmId": "rs-bundle",
+      "IsMutable": false,
+      "Role": 6,
+      "Priority": 1000,
+      "Version": "1.0.0",
+      "Checksum": "",
+      "HotSwapPolicy": 1,
+      "StabilityScore": 1
+    },
+    "Imports": [
+      "rs-char-classes",
+      "rs-constraint-spec",
+      "rs-operations",
+      "rs-entropy",
+      "rs-generation",
+      "rs-nl-vocabulary"
+    ],
+    "Derives": [],
+    "CreatedUtc": "2026-06-17T00:00:00Z",
+    "SchemaVersion": "1.0"
+  },
+  "Concepts": [
+    {
+      "Id": "domain-root",
+      "Label": "random string generator",
+      "Category": "Domain",
+      "Description": "Constraint-based random string / password generator with a natural-language front end. This bundle indexes the full domain knowledge graph.",
+      "Aliases": [],
+      "Properties": {}
+    },
+    {
+      "Id": "mod-char-classes",
+      "Label": "character classes",
+      "Category": "Module",
+      "Description": "Alphabet \u0026 the four character classes.",
+      "Aliases": [],
+      "Properties": {
+        "Tlm": "rs-char-classes"
+      }
+    },
+    {
+      "Id": "mod-constraint-spec",
+      "Label": "constraint spec",
+      "Category": "Module",
+      "Description": "The ConstraintSpec contract / schema.",
+      "Aliases": [],
+      "Properties": {
+        "Tlm": "rs-constraint-spec"
+      }
+    },
+    {
+      "Id": "mod-operations",
+      "Label": "operations",
+      "Category": "Module",
+      "Description": "Operations that narrow the spec.",
+      "Aliases": [],
+      "Properties": {
+        "Tlm": "rs-operations"
+      }
+    },
+    {
+      "Id": "mod-entropy",
+      "Label": "entropy",
+      "Category": "Module",
+      "Description": "Strength model and reference points.",
+      "Aliases": [],
+      "Properties": {
+        "Tlm": "rs-entropy"
+      }
+    },
+    {
+      "Id": "mod-generation",
+      "Label": "generation",
+      "Category": "Module",
+      "Description": "The deterministic generation algorithm.",
+      "Aliases": [],
+      "Properties": {
+        "Tlm": "rs-generation"
+      }
+    },
+    {
+      "Id": "mod-nl-vocabulary",
+      "Label": "NL vocabulary",
+      "Category": "Module",
+      "Description": "English phrasing -\u003E intents.",
+      "Aliases": [],
+      "Properties": {
+        "Tlm": "rs-nl-vocabulary"
+      }
+    }
+  ],
+  "Relations": [
+    {
+      "SourceId": "domain-root",
+      "TargetId": "mod-char-classes",
+      "Type": "ComposedOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "domain-root",
+      "TargetId": "mod-constraint-spec",
+      "Type": "ComposedOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "domain-root",
+      "TargetId": "mod-operations",
+      "Type": "ComposedOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "domain-root",
+      "TargetId": "mod-entropy",
+      "Type": "ComposedOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "domain-root",
+      "TargetId": "mod-generation",
+      "Type": "ComposedOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "domain-root",
+      "TargetId": "mod-nl-vocabulary",
+      "Type": "ComposedOf",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "mod-constraint-spec",
+      "TargetId": "mod-char-classes",
+      "Type": "DependsOn",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "mod-operations",
+      "TargetId": "mod-constraint-spec",
+      "Type": "DependsOn",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "mod-entropy",
+      "TargetId": "mod-constraint-spec",
+      "Type": "DependsOn",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "mod-generation",
+      "TargetId": "mod-constraint-spec",
+      "Type": "DependsOn",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "mod-generation",
+      "TargetId": "mod-char-classes",
+      "Type": "DependsOn",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    },
+    {
+      "SourceId": "mod-nl-vocabulary",
+      "TargetId": "mod-operations",
+      "Type": "DependsOn",
+      "Description": "",
+      "Strength": 1,
+      "SchemaVersion": 1,
+      "SourceTag": "",
+      "UtteranceText": null,
+      "TurnIndex": null,
+      "Decay": null
+    }
+  ],
+  "Dimensions": [],
+  "Policies": [],
+  "Cues": [],
+  "FitSignals": [],
+  "Generators": [],
+  "ParameterCount": 18
+}
