@@ -40,6 +40,13 @@ if (args.Length > 0)
         Decompile(args.Length > 1 ? args[1] : "all");
         return 0;
     }
+    // `passgen --trace <english>` — show the full Symbolic Intent Architecture pipeline.
+    if (args[0] is "--trace" or "-t")
+    {
+        if (args.Length < 2) { Console.Error.WriteLine("usage: passgen --trace <english request>"); return 1; }
+        Trace(Sanitize(string.Join(' ', args.Skip(1))));
+        return 0;
+    }
     Handle(Sanitize(string.Join(' ', args)));
     return 0;
 }
@@ -48,7 +55,7 @@ if (args.Length > 0)
 Console.WriteLine($"PassGen — password assistant. Knowledge: {kb.TlmCount} TLMs, "
                   + $"{kb.ConceptCount} concepts, {kb.RelationCount} relations (random-string bundle only, no LLM).");
 Console.WriteLine("Ask for a password, or about passwords/entropy. Each line is its own request.");
-Console.WriteLine("Commands: /recall /decompile /spec /copy /mask /clear /seed /help /exit\n");
+Console.WriteLine("Commands: /trace /recall /decompile /spec /copy /mask /clear /seed /help /exit\n");
 
 while (true)
 {
@@ -85,6 +92,7 @@ void Command(string input)
             Console.WriteLine("""
                 Commands:
                   <english>        generate a password OR answer a question (auto-detected)
+                  /trace <english> show the language->intent->validate->execute->verify pipeline
                   /recall <topic>  search the random-string knowledge graph
                   /decompile [n]   dump the .tlmz knowledge to readable JSON (name or 'all')
                   /spec            show the last parsed GenerateArgs (the 'LLM' function-call args)
@@ -95,6 +103,10 @@ void Command(string input)
                   /help            this help
                   /exit            quit
                 """);
+            break;
+        case "/trace":
+            if (parts.Length < 2) { Console.WriteLine("usage: /trace <english request>"); break; }
+            Trace(parts[1]);
             break;
         case "/recall":
             if (parts.Length < 2) { Console.WriteLine("usage: /recall <topic>"); break; }
@@ -188,6 +200,86 @@ void Generate(string input)
         Console.WriteLine($"  I read: {string.Join(", ", parsed.Cues)}");
         Console.WriteLine("  Loosen one of those (raise the length, or lower a minimum) and I can do it.");
     }
+}
+
+// ── trace path: Symbolic Intent Architecture, made visible ───────────────────
+//   Renders the five SIA stages so a human can SEE that natural language never
+//   touches the tool directly — it becomes typed, validated intent first:
+//     [1] Prompt -> [2] Resolved Intent -> [3] Validation -> [4] Execution -> [5] Verification
+//   Pure ASCII so it records cleanly as a terminal GIF.
+void Trace(string input)
+{
+    GenerateArgs a; List<string> cues; List<string> unsupported = new();
+    if (nlu.Ready) { var r = nlu.Resolve(input); a = r.Args; cues = r.Fired; unsupported = r.Unsupported; }
+    else { var p = SpecParser.Parse(input); a = p.Args; cues = p.Cues; }
+    lastArgs = a;
+
+    Console.WriteLine();
+    Console.WriteLine("  SYMBOLIC INTENT ARCHITECTURE  -  don't execute language, execute verified intent");
+    Console.WriteLine();
+
+    // [1] PROMPT — raw human language.
+    TracePanel(1, "PROMPT", "what the human said", new[] { "\"" + input + "\"" });
+
+    // [2] RESOLVED INTENT — language becomes inspectable symbolic constraints.
+    var spec = a.ToSpec();
+    var intent = IntentLines(spec);
+    intent.Add("");
+    intent.Add("cues fired    : " + (cues.Count > 0 ? string.Join(", ", cues) : "(none -> defaults)"));
+    foreach (var u in unsupported)
+        intent.Add("note          : can't enforce " + u);
+    TracePanel(2, "RESOLVED INTENT", "language -> inspectable symbolic constraints", intent);
+
+    // [3] VALIDATION — is the intent satisfiable? (throws BEFORE any generation)
+    string? reject = null;
+    try { SpecValidator.Validate(spec); }
+    catch (SpecException ex) { reject = ex.Message; }
+
+    if (reject is not null)
+    {
+        // Fail-closed: language proposed an impossible action; the symbolic layer
+        // refuses, the tool is never invoked, and there is nothing to verify.
+        TracePanel(3, "VALIDATION", "is the intent satisfiable?", new[]
+        {
+            "satisfiable   = NO",
+            "status        = REJECTED",
+            "reason        = " + reject,
+        });
+        TracePanel(4, "EXECUTION", "deterministic tool", new[] { "[ HALTED ]    the generator is never invoked" });
+        TracePanel(5, "VERIFICATION", "post-conditions", new[] { "[ BYPASSED ]  nothing was produced to verify" }, last: true);
+        Console.WriteLine();
+        Console.WriteLine("  Language proposed an impossible action; the symbolic layer refused it");
+        Console.WriteLine("  BEFORE any tool ran. Fail-closed: correctness over agreeableness.");
+        return;
+    }
+
+    TracePanel(3, "VALIDATION", "is the intent satisfiable?", new[]
+    {
+        "satisfiable   = YES",
+        "alphabet      = " + Entropy.CharsetSize(spec) + " distinct chars (after exclusions)",
+        "constraints   = non-conflicting",
+    });
+
+    // [4] EXECUTION — the deterministic tool runs only on validated intent.
+    var result = RandomStringTool.Execute(a, seed);
+    lastPassword = result.Value;
+    TracePanel(4, "EXECUTION", "deterministic tool runs on validated intent", new[]
+    {
+        "tool          = " + RandomStringTool.Name,
+        "rng           = " + (seed is null ? "CSPRNG (cryptographically secure)" : $"seeded Random (INSECURE, seed={seed})"),
+        "output        = " + result.Value,
+    });
+
+    // [5] VERIFICATION — post-conditions re-checked against the symbolic intent.
+    var verify = VerificationLines(result.Value, result.Spec);
+    var (ok, violations) = SpecValidator.CheckString(result.Value, result.Spec);
+    verify.Add("entropy       : " + result.EntropyBits + " bits (" + result.Strength + ")");
+    verify.Add("verdict       : " + (ok ? "MATCHES REQUEST" : "MISMATCH - " + string.Join("; ", violations)));
+    TracePanel(5, "VERIFICATION", "post-conditions checked after execution", verify, last: true);
+
+    Console.WriteLine();
+    Console.WriteLine("  Natural language never touched the generator directly. It became typed,");
+    Console.WriteLine("  validated intent first - then the tool ran, then the output was verified.");
 }
 
 // ── knowledge path ───────────────────────────────────────────────────────────
@@ -309,6 +401,73 @@ static bool TryCopyToClipboard(string text)
         return p.WaitForExit(2000) && p.ExitCode == 0;
     }
     catch { return false; }
+}
+
+// Render one SIA stage as a connected ASCII panel; arrows link it to the next.
+static void TracePanel(int n, string title, string subtitle, IEnumerable<string> lines, bool last = false)
+{
+    Console.WriteLine($"  +-- [{n}] {title}  ({subtitle})");
+    foreach (var l in lines)
+        Console.WriteLine(l.Length == 0 ? "  |" : $"  |     {l}");
+    if (!last) { Console.WriteLine("  |"); Console.WriteLine("  v"); }
+}
+
+// The symbolic intent: length + per-class rules + char exclusions, as inspectable lines.
+static List<string> IntentLines(ConstraintSpec spec)
+{
+    var lines = new List<string>();
+    string len = spec.Length.Exact is { } e ? e.ToString()
+        : (spec.Length.Min, spec.Length.Max) switch
+        {
+            (int lo, int hi) => $"{lo}..{hi}",
+            (int lo, null) => $">= {lo}",
+            (null, int hi) => $"<= {hi}",
+            _ => "auto (16)",
+        };
+    lines.Add($"{"length",-13} = {len}");
+    foreach (var c in Alphabet.All)
+    {
+        var cc = spec.Classes[c];
+        var name = c.ToString().ToLowerInvariant();
+        if (!cc.Allowed) { lines.Add($"{name,-13} = excluded"); continue; }
+        var bits = new List<string>();
+        if (cc.Min > 0) bits.Add($"min {cc.Min}");
+        if (cc.Max is { } mx) bits.Add($"max {mx}");
+        lines.Add($"{name,-13} = {(bits.Count > 0 ? string.Join(", ", bits) : "allowed")}");
+    }
+    var ambiguous = new HashSet<char>(Alphabet.Ambiguous);
+    if (spec.ExcludeChars.Count > 0)
+        lines.Add(ambiguous.SetEquals(spec.ExcludeChars)
+            ? $"{"exclude",-13} = ambiguous look-alikes (0 O o 1 l I)"
+            : $"{"exclude",-13} = " + new string(spec.ExcludeChars.ToArray()));
+    if (spec.IncludeChars.Count > 0)
+        lines.Add($"{"include",-13} = " + new string(spec.IncludeChars.ToArray()));
+    return lines;
+}
+
+// Post-execution checks: length, each required class minimum, excluded chars absent.
+static List<string> VerificationLines(string value, ConstraintSpec spec)
+{
+    var lines = new List<string>();
+    bool lenOk = spec.Length.Exact is { } e ? value.Length == e
+        : (spec.Length.Min is null || value.Length >= spec.Length.Min)
+          && (spec.Length.Max is null || value.Length <= spec.Length.Max);
+    lines.Add($"{"length",-13} : {(lenOk ? "pass" : "FAIL")} (got {value.Length})");
+
+    foreach (var c in Alphabet.All)
+    {
+        var cc = spec.Classes[c];
+        if (cc.Min <= 0) continue;
+        int count = value.Count(ch => Alphabet.ClassOf(ch) == c);
+        var name = c.ToString().ToLowerInvariant();
+        lines.Add($"{name,-13} : {(count >= cc.Min ? "pass" : "FAIL")} (>= {cc.Min}, got {count})");
+    }
+    if (spec.ExcludeChars.Count > 0)
+    {
+        var banned = new HashSet<char>(spec.ExcludeChars);
+        lines.Add($"{"excluded",-13} : {(value.Any(banned.Contains) ? "FAIL" : "pass")} (none present)");
+    }
+    return lines;
 }
 
 static string SpecSummary(ConstraintSpec spec)

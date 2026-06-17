@@ -36,8 +36,8 @@ public static class SpecValidator
         {
             if (exact < sumMin || exact > sumMax)
             {
-                var hi = double.IsInfinity(sumMax) ? "∞" : sumMax.ToString();
-                throw new SpecException($"length {exact} is outside the feasible range [{sumMin}, {hi}]");
+                var hi = double.IsInfinity(sumMax) ? "no upper bound" : sumMax.ToString();
+                throw new SpecException($"length {exact} is outside the feasible range [{sumMin}, {hi}] required by the class minimums");
             }
         }
         else
