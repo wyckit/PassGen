@@ -39,13 +39,18 @@ jobs:
       - name: Smoke-check the CLI (also confirms it finds dataset/compiled)
         run: passgen --trace "16 chars, 2 uppercase, no ambiguous"
 
-      - name: Install ffmpeg (VHS needs it to encode the GIF)
-        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Install VHS, ttyd and ffmpeg (Charm apt repo)
+        run: |
+          sudo mkdir -p /etc/apt/keyrings
+          curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+          echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list >/dev/null
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg vhs
+          sudo apt-get install -y fonts-jetbrains-mono || echo "JetBrains Mono font unavailable; VHS will fall back to a default monospace"
+          vhs --version
 
       - name: Render the tape -> docs/demo.gif
-        uses: charmbracelet/vhs-action@v2
-        with:
-          path: docs/demo.tape
+        run: vhs docs/demo.tape
 
       - name: Ensure the GIF was actually produced
         run: test -s docs/demo.gif || { echo "::error::docs/demo.gif was not produced by VHS"; exit 1; }
